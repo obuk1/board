@@ -36,7 +36,9 @@ public class UserController {
 			String dbPwd = dbUser.getPwd();
 			String userPwd = user.getPwd();
 			boolean isMatch = passwordEncoder.matches(userPwd, dbPwd);
-			session.setAttribute("user_info", dbUser);
+			if (isMatch) {
+				session.setAttribute("user_info", dbUser);
+			}
 		}
 		return "redirect:/";
 	}
